@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root
+        xmlns:jsp="http://java.sun.com/JSP/Page"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+        version="2.0">
+    <jsp:directive.page contentType="text/html" />
+    <c:set var="context" value="${pageContext.servletContext.contextPath}" />
+    <html class="js" lang="en"><head>
+    <!-- Basic Page Needs -->
+    <title>Signup</title>
+    
+    <!-- fav and touch icons
+    ================================================== -->
+    <link rel="shortcut icon" href="${context}/img/favicon.ico"/>
+
+    <!-- Stylesheets
+    ================================================== -->
+    <link rel="stylesheet" href="${context}/files/bootstrap.css"/>
+    <link rel="stylesheet" href="${context}/files/bootstrap-responsive.css"/>
+    <link rel="stylesheet" href="${context}/files/styles.css"/>
+
+	<!-- Javascript
+    ================================================== -->
+    <![CDATA[<script src="${context}/files/login-sign-up.js"></script>]]>
+</head>
+<body id="page" style="background-color: #ededed;">
+   
+    <div class="container">
+    <!-- Signup
+    ================================================== -->
+    <div class="signup">
+        
+        <h1><a class="brandMy" href="http://localhost:8080/Rate/rate/">rateLectors.com</a></h1>
+        
+        <form id="signup-form" action="http://localhost:8080/Rate/rate/" method="post">
+            <input type="text" name="signup" style="display: none;"/>
+            <div class="control-group">
+                <div class="control">
+                    <div class="input-prepend">
+                        <label class="control-label add-on" for="signup-firstname">First Name</label>
+                        <input id="signup-firstname" name="firstname" tabindex="1" required="required" type="text"/>
+                    </div>
+                    <div class="input-prepend">
+                        <label class="control-label add-on" for="signup-lastname">Last Name</label>
+                        <input id="signup-lastname" name="lastname" tabindex="2" required="required" type="text"/>
+                    </div>
+                </div>
+            </div>    
+            <div class="control-group">    
+                <div class="control">
+                    <div class="input-prepend">
+                        <label class="control-label add-on" for="signup-email">Email</label>
+                        <input id="signup-email" name="email" tabindex="3" required="required" type="email"/>
+                    </div>
+                </div>
+            </div>    
+            <div class="control-group">    
+                <div class="control">
+                    <div class="input-prepend">
+                        <label class="control-label add-on" for="signup-username">Username</label>
+                        <input id="signup-username" name="username" tabindex="4" required="required" type="text"/>
+                    </div>
+                    <div class="input-prepend">
+                        <label class="control-label add-on" for="signup-password">Password</label>
+                        <input id="signup-password" name="password" tabindex="5" required="required" type="password"/>
+                    </div>
+                </div>
+            </div>    
+            <div class="control-group">    
+                <div class="control text-center">
+                    <input type="submit" tabindex="6" class="btn btn-block btn-large btn-primary transitional" value="Create my account"/>
+                    <hr class="soften inverse"/>
+                    <hr class="soften"/>
+                    <small>Already have an account? <a href="http://localhost:8080/Rate/rate/?login">Log in here</a>.</small>
+                </div>
+            </div>
+        </form>
+    </div><!--/ .signup -->
+<!-- 
+     Footer
+    ================================================== 
+    <footer class="footer">
+        <div class="container" style="border: 0 none; box-shadow: none;">
+            <small class="copyright muted" style="position: fixed; bottom: 0; right: 20px;">© 2014 lynda.com, Inc.</small>
+        </div>
+    </footer> /.footer -->
+</div>
+</body></html>
+</jsp:root>

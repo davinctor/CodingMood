@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root
+        xmlns:jsp="http://java.sun.com/JSP/Page"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+        version="2.0">
+    <jsp:directive.page contentType="text/html" />
+    <c:set var="context" value="${pageContext.servletContext.contextPath}" />
+    <html>
+        <head>
+            <title>Info</title>
+            <link rel="shortcut icon" href="${context}/img/favicon.ico"/>
+            <link rel="stylesheet" href="${context}/files/styles.css"/>
+        </head>
+        <body>
+            <div class="pageInfo">
+                <h1><span class="headerMessage"><a href="http://localhost:8080/Rate/rate/">rateLectors.com</a></span></h1>
+                <div class="message"><c:out value="${message}" /></div>
+                <a class="linkBack" href="${linkBack}">Back</a>
+                <hr class="soften inverse"/>
+                <hr class="soften"/>
+                <div class="bgInfo"></div>
+            </div>
+        </body>
+    </html>
+</jsp:root>

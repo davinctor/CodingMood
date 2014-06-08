@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root
+        xmlns:jsp="http://java.sun.com/JSP/Page"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+        version="2.0">
+    <jsp:directive.page contentType="text/html" />
+	<c:set var="context" value="${pageContext.servletContext.contextPath}" />
+    <html class="js" lang="en"><head>
+    <!-- Basic Page Needs -->
+    <title>Login</title>
+    
+    <!-- fav and touch icons
+    ================================================== -->
+    <link rel="shortcut icon" href="${context}/img/favicon.ico"/>
+
+    <!-- Stylesheets
+    ================================================== -->
+    <link rel="stylesheet" href="${context}/files/bootstrap.css"/>
+    <link rel="stylesheet" href="${context}/files/bootstrap-responsive.css"/>
+    <link rel="stylesheet" href="${context}/files/styles.css"/>
+
+
+</head>
+<body id="page" style="background-color: #ededed;">
+   
+    <div class="container">
+    <!-- Signup
+    ================================================== -->
+    <div class="signup login">
+        
+        <h1><a class="brandMy" href="http://localhost:8080/Rate/rate/">rateLectors.com</a></h1>
+        <form id="login-form" action="http://localhost:8080/Rate/rate/" method="post">
+            <input type="text" name="login" style="display:none"/>
+            <div class="control-group">
+                <div class="controls">
+                    <div class="input-prepend">
+                        <label class="control-label add-on" for="login-username">Username</label>
+                        <input id="login-username" tabindex="1" name="username" autofocus="autofocus" required="required" type="text"/>
+                    </div>
+                </div>
+                <div class="controls">
+                    <div class="input-prepend input-append">
+                        <label class="control-label add-on" for="login-password">Password</label>
+                        <input id="login-password" tabindex="2" name="password" required="required" type="password"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls text-center">
+                    <input type="submit" tabindex="3" class="btn btn-large btn-primary transitional"
+                           style="padding-left: 80px; padding-right: 80px;" value="Log In"/>
+                    
+                    <hr class="soften inverse"/>
+                    <hr class="soften"/>
+                    
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <div class="controls text-center" style="margin-top: -25px; padding-bottom: 200px;">
+                    <small><a href="http://localhost:8080/Rate/rate/?signup">Don't have an account?</a> </small>
+                </div>
+            </div>
+            
+        </form>
+    </div><!--/ .login -->
+</div>
+    
+</body></html>
+</jsp:root>

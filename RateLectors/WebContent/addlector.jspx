@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root
+        xmlns:jsp="http://java.sun.com/JSP/Page"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+        version="2.0">
+    <jsp:directive.page contentType="text/html" />
+    <c:set var="context" value="${pageContext.servletContext.contextPath}" />
+    <html>
+<head>
+<title>Add new lector</title>
+<link rel="shortcut icon" href="${context}/img/favicon.ico"/>
+<link rel="stylesheet" href="${context}/files/bootstrap.css"/>
+<link rel="stylesheet" href="${context}/files/bootstrap-responsive.css"/>
+<link rel="stylesheet" href="${context}/files/styles.css"/>
+</head>
+
+<body>
+    
+    <div class="signup" style="background: none; padding: 0 0 0 35%; margin: 0; width: 80%;">
+        
+        <h1 class="text-center header">Create new lector</h1>
+        
+        <form id="login-form" method="post" action="http://localhost:8080/Rate/rate/" 
+              enctype="multipart/form-data" style="margin: 0 auto; width: 80%;">
+            <input type="text" name="addlector" style="display: none;"/>
+            <div class="control-group">
+                <div class="controls">
+                    <div class="input-prepend">
+                        <label class="control-label add-on">First Name</label>
+                        <input name="firstname" autofocus="autofocus" required="required" type="text"/>
+                    </div>
+                    <div class="input-prepend">
+                        <label class="control-label add-on">Last Name</label>
+                        <input name="lastname" required="required" type="text"/>
+                    </div>
+                    <div class="input-prepend">
+                        <label class="control-label add-on">Patronymic</label>
+                        <input name="patronymic" required="required" type="text"/>
+                    </div>
+                    <div class="input-prepend">
+                        <label class="control-label add-on">University</label>
+                        <input name="university" required="required" type="text"/>
+                    </div>
+                    <div class="input-prepend">
+                        <label class="control-label add-on">Faculty</label>
+                        <input name="faculty" required="required" type="text"/>
+                    </div>
+                    <div class="input-prepend">
+                        <select size="1" style="width:100%; border-radius: 4px;" name="degree">
+                            <option value="assistant">Assistant</option>
+                            <option value="teacher">Senior teacher</option>
+                            <option value="candidate">Candidate of Sciences</option>
+                            <option value="doctor">Doctor of Sciences</option>
+                        </select>
+                    </div>
+                    <div class="input-prepend">
+                        <label class="control-label add-on">Subjects</label>
+                        <input name="subjects" required="required" type="text"/>
+                    </div>
+                    <div class="input-prepend">
+                        <label class="control-label add-on">Goals</label>
+                        <input name="goals" type="text" />
+                    </div>
+                    <div class="input-prepend">
+                        <div style="border-radius: 4px">
+                        	<div class="upload">
+                            	<input type="file" accept="image/*" name="imageFile"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls text-center">
+                    <input type="submit" class="btn btn-large btn-primary transitional"
+                           style="width: 100%;" value="Create"/>
+                    
+                    <!--<hr class="soften inverse"/>
+                    <hr class="soften"/>-->
+                    
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="sidebar">
+        <a href="http://localhost:8080/Rate/rate/" class="navig-icon home"></a>
+        <a href="http://localhost:8080/Rate/rate/?addnewlector" class="navig-icon new"></a>
+        <a href="http://localhost:8080/Rate/rate/?search" class="navig-icon search"></a>
+        <a href="http://localhost:8080/Rate/rate/?logout" class="navig-icon logout"></a>
+    </div>
+</body>
+</html>
+
+</jsp:root>
