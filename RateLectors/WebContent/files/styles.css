@@ -1566,9 +1566,11 @@ a.navig-icon.logout {
 	background: url('http://localhost:8080/Rate/img/download.png') no-repeat;
 	overflow: hidden;
 }
+
 .upload:hover {
 	background: url('http://localhost:8080/Rate/img/download-hover.png') no-repeat;
 }
+
 div.upload input {
     display: block !important;
     width: 194px !important;
