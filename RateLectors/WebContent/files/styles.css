@@ -1,12 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:600,400,300");
 
-
-
 html, body {
   position: relative;
 }
-
-
 
 /* Typography
 ----------------------------------------------------------------------------- */
@@ -1562,6 +1558,7 @@ a.navig-icon.logout {
     bottom: 20px;
     right: 5px;
 }
+
 .upload {
 	margin: 0 auto;
 	width: 194px;
