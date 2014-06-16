@@ -120,7 +120,7 @@
     </div>
     <div class="sidebar">
         <a href="http://localhost:8080/Rate/rate/" class="navig-icon home"></a>
-        <a href=http://localhost:8080/Rate/rate/?addnewlector" class="navig-icon new"></a>
+        <a href="http://localhost:8080/Rate/rate/?addnewlector" class="navig-icon new"></a>
         <a href="http://localhost:8080/Rate/rate/?search" class="navig-icon search"></a>
         <a href="http://localhost:8080/Rate/rate/?logout" class="navig-icon logout"></a>
     </div>
