@@ -188,8 +188,8 @@ a:hover { text-decoration: underline; }
 }
 #userphoto img {
   display: block;
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   padding: 2px;
   background: #fff;
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.4);
@@ -288,7 +288,7 @@ html[xmlns] .clearfix { display: block; }
 * html .clearfix { height: 1%; }
 
 .comment {
-  width: 100%;
+  width: 98%;
   margin: 20px 10px;
   border: silver 1px solid;
 }
@@ -349,10 +349,10 @@ p.rating {
 
 p.rating a.mark {
   display: inline-block;
-  background: url('../images/starbig.png') no-repeat;
+  background: url('http://localhost:8080/Rate/img/starbig.png') no-repeat;
   width: 64px;
   height: 64px;
-  opacity: 0.6;
+  opacity: 0.4;
   -moz-transition-property: opacity;
   -moz-transition-duration: 0.3s;
 }
@@ -365,6 +365,7 @@ p.rating a.mark:hover {
   width: 80%;
   margin: 0 auto;
   border: grey 1px solid;
+  height: 130px;
 }
 
 .comment-create img {
@@ -381,15 +382,24 @@ p.rating a.mark:hover {
 }
 
 .comment-area textarea {
-  height: 70px;
+  height: 75px;
   margin: 3%;
-  margin-left: 5px;
+  margin-top: -16%;
+  margin-left: 0;
   width: 100%;
   resize: none;
 }
 
 .comment-create .comment-submit {
   display: inline-block;
-  margin-left: 19%;
-  margin-top: -2%;
+  margin-left: 17%;
+  margin-top: -1%;
+  padding: 0;
+  width: 40px;
+  height: 25px;
+  font-size: 11px;
+}
+
+h1 a.editlect:hover {
+	text-decoration: none;
 }

@@ -3,40 +3,64 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <c:set var="context" value="${pageContext.servletContext.contextPath}" />
+<%
+	ResultSet rsComments = (ResultSet) request.getServletContext().getAttribute("rsComments");
+	ResultSet rsLector = (ResultSet) request.getServletContext().getAttribute("rsLector");
+	ResultSet rsRate = (ResultSet) request.getServletContext().getAttribute("rsRate");
+	boolean admin = (boolean) request.getServletContext().getAttribute("isAdmin");
+	rsLector.next();
+	boolean haveRate = false;
+	if (rsRate.next()) haveRate = true;
+	int userID = (int) request.getServletContext().getAttribute("userID");
+%>
 <html lang="en-US">
 <head>
-  <title>User Profile with Content Tabs - Design Shack Demo</title>
+  <title>
+  	<%
+  		String name[] = rsLector.getString(2).split(" ");
+      	out.println(name[1] + " " + name[0] + " " + name[2]);
+     %>
+  </title>
+  <link rel="shortcut icon" href="${context}/img/favicon.ico"/>
   <link rel="stylesheet" href="${context}/files/bootstrap.css"/>
-    <link rel="stylesheet" href="${context}/files/bootstrap-responsive.css"/>
-    <link rel="stylesheet" href="${context}/files/styles.css"/>
-    <link rel="stylesheet" href="${context}/files/styles-lector.css"/>
-  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+  <link rel="stylesheet" href="${context}/files/bootstrap-responsive.css"/>
+  <link rel="stylesheet" href="${context}/files/styles.css"/>
+  <link rel="stylesheet" href="${context}/files/styles-lector.css"/>
+  <script type="text/javascript" src="${context}/files/jquery-1.10.2.min.js"></script>
   <script type="text/javascript">
-	$(function(){
-	  $('#profiletabs ul li a').on('click', function(e){
-	    e.preventDefault();
-	    var newcontent = $(this).attr('href');
-	    
-	    $('#profiletabs ul li a').removeClass('sel');
-	    $(this).addClass('sel');
-	    
-	    $('#content section').each(function(){
-	      if(!$(this).hasClass('hidden')) { $(this).addClass('hidden'); }
-	    });
-	    
-	    $(newcontent).removeClass('hidden');
-	  });
-	});
+		$(function(){
+		  $('#profiletabs ul li a').on('click', function(e){
+		    e.preventDefault();
+		    var newcontent = $(this).attr('href');
+		    
+		    $('#profiletabs ul li a').removeClass('sel');
+		    $(this).addClass('sel');
+		    
+		    $('#content section').each(function(){
+		      if(!$(this).hasClass('hidden')) { $(this).addClass('hidden'); }
+		    });
+		    
+		    $(newcontent).removeClass('hidden');
+		  });
+		});
 	</script>
 </head>
 <body>
-  
   <div class="">
   <div id="w">
     <div id="content" class="clearfix">
-      <div id="userphoto"><img src="images/2.jpg" alt="default avatar"></div>
-      <h1>Minimal User Profile Layout</h1>
-
+      <div id="userphoto">
+      	<% out.println("<img src=\"http://localhost:8080/Rate/rate/?image=" + rsLector.getInt(1) + "\">"); %>
+      </div>
+      <h1><%
+      name = rsLector.getString(2).split(" ");
+      out.println(name[1] + " " + name[0] + " " + name[2]);
+      if (admin) {
+    	  out.println("<a class=\"editlect\" href=\"http://localhost:8080/Rate/rate/?editlector=" + rsLector.getInt(1) + "\" />");
+      		out.println("<img src=\"http://localhost:8080/Rate/img/edit.png\" />");
+    	  out.println("</a>");
+      }
+      %></h1>
       <nav id="profiletabs">
         <ul class="clearfix">
           <li><a href="#activity"  class="sel">Comments</a></li>
@@ -47,116 +71,84 @@
       <section id="activity">
         <p>Most recent comments:</p>
         
-         <div class="comment">
-        	<div class="userphoto">
-        		<img  src="images/avatar.png"/>
-        	</div>
-        	<div class="body-comment">
-	        	<p class="username">Johny</p>
-	        	<p class="text-comment">@10:15PM - Submitted a news article</p>
-	        	<p class="mark">
-	        		<img src="images/star.png" alt="5">
-	        		<img src="images/star.png" alt="5">
-	        		<img src="images/star.png" alt="5">
-	        		<img src="images/star.png" alt="5">
-	        		<img src="images/star.png" alt="5">
-	        	</p>
-		        <p class="comment-date">20-11-2014</p>
-	        </div>
-        </div>
+        <%
+	        if (rsComments == null) return;
+	        while (rsComments.next()) {
+	            out.println("<div class=\"comment\">");
+	                out.println("<div class=\"userphoto\">");
+	                	out.println("<img  src=\"http://localhost:8080/Rate/rate/?imageuser=" + rsComments.getInt(1) + "\"/>");
+	                out.println("</div>");
+	                out.println("<div class=\"body-comment\">");
+	                	out.println("<p class=\"username\">");
+	                		out.println(rsComments.getString(2));
+	                	out.println("</p>");
+	                	out.println("<p class=\"text-comment\">");
+                			out.println(rsComments.getString(4));
+                		out.println("</p>");
+                		out.println("<p class=\"mark\">");
+                			int mark = (int) rsComments.getFloat(3);
+                			for(int i = 0; i < mark; i++)
+            					out.println("<img src=\"http://localhost:8080/Rate/img/star.png\" alt=\"" + mark + "\">");
+            			out.println("</p>");
+            			out.println("<p class=\"comment-date\">");
+            				out.println(rsComments.getDate(5).toString());
+            			out.println("</p>");
+	                out.println("</div>");
+	            out.println("</div>");
+	        }
+		%>
         
-        <div class="comment">
-        	<div class="userphoto">
-        		<img  src="images/avatar.png"/>
-        	</div>
-        	<div class="body-comment">
-	        	<p class="username">Johny</p>
-	        	<p class="text-comment">@10:15PM - Submitted a news article</p>
-	        	<p class="mark">
-	        		<img src="images/star.png" alt="1">
-	        	</p>
-		        <p class="comment-date">20-11-2014</p>
-	        </div>
-        </div>
-        
-         <div class="comment">
-        	<div class="userphoto">
-        		<img  src="images/avatar.png"/>
-        	</div>
-        	<div class="body-comment">
-	        	<p class="username">Johny</p>
-	        	<p class="text-comment">@10:15PM - Submitted a news article</p>
-	        	<p class="mark">
-	        		<img src="images/star.png" alt="5">
-	        		<img src="images/star.png" alt="5">
-	        		<img src="images/star.png" alt="5">
-	        		<img src="images/star.png" alt="4">
-	        	</p>
-		        <p class="comment-date">20-11-2014</p>
-	        </div>
-        </div>
-        
-         <div class="comment">
-        	<div class="userphoto">
-        		<img  src="images/avatar.png"/>
-        	</div>
-        	<div class="body-comment">
-	        	<p class="username">Johny</p>
-	        	<p class="text-comment">@10:15PM - Submitted a news article</p>
-	        	<p class="mark">
-	        		<img src="images/star.png" alt="2">
-	        		<img src="images/star.png" alt="2">
-	        	</p>
-		        <p class="comment-date">20-11-2014</p>
-	        </div>
-        </div>
-        
-         <div class="comment">
-        	<div class="userphoto">
-        		<img  src="images/avatar.png"/>
-        	</div>
-        	<div class="body-comment">
-	        	<p class="username">Johny</p>
-	        	<p class="text-comment">@10:15PM - Submitted a news article</p>
-	        	<p class="mark">
-	        		<img src="images/star.png" alt="3">
-	        		<img src="images/star.png" alt="3">
-	        		<img src="images/star.png" alt="3">
-	        	</p>
-		        <p class="comment-date">20-11-2014</p>
-	        </div>
-        </div>
-
-        <form method="post" action="">
+        <form method="post" action="http://localhost:8080/Rate/rate/">
 	        <div class="comment-create">
-	        	<img  src="images/avatar.png"/>
+	        	<% out.println("<img  src=\"http://localhost:8080/Rate/rate/?imageuser=" + userID + "\"/>"); %>
 	        	<div class="comment-area">
+	        			<% out.println("<input type=\"text\" name=\"user\"" + 
+	        					" style=\"display: none;\" value=\"" + userID + "\"/>"); %>
+	        			<% out.println("<input type=\"text\" name=\"lector\"" +
+	        					" style=\"display: none;\" value=\"" + rsLector.getInt(1) + "\" />"); %>
 				        <textarea name="msg" id="usrmsg"></textarea>
 			    </div>
-			    <input class="comment-submit" type="submit" name="comment" value="Post"/>
+			    <input class="comment-submit btn btn-large btn-primary transitional" type="submit" name="comment" value="Post"/>
 	       	</div>
        	</form>
       </section>
       
       <section id="settings" class="hidden">
-        <p>Edit your user settings:</p>
         
-        <p class="setting"><span>E-mail Address</span> lolno@gmail.com</p>
+        <p class="setting"><span>Faculty</span> <% out.println(rsLector.getString(4)); %></p>
         
-        <p class="setting"><span>Language</span> English(US)</p>
+        <p class="setting"><span>University</span> <% out.println(rsLector.getString(3)); %></p>
         
-        <p class="setting"><span>Profile Status</span> Public</p>
+        <p class="setting"><span>Degree</span> <% out.println(rsLector.getString(5)); %></p>
         
-        <p class="setting"><span>Update Frequency</span> Weekly</p>
+        <p class="setting"><span>Subjects</span> <% out.println(rsLector.getString(6)); %></p>
         
-        <p class="setting"><span>Connected Accounts</span> None</p>
+        <% 
+        	String goals = rsLector.getString(7);
+        	if (goals.length() != 0)
+        		out.println("<p class=\"setting\"><span>Goals</span>" + goals + "</p>"); 
+        %>
 
         <p class="rating">
-        		<a href="#" title="1" class="mark"/>
-        		<a href="#" title="2" class="mark"/>
-        		<a href="#" title="3" class="mark"/>
-        		<a href="#" title="4" class="mark"/>
-        		<a href="#" title="5" class="mark"/>
+        	<% 
+        		int mark = 0;
+        		int j = 0;
+        		if (haveRate) {
+        			mark = rsRate.getInt(2);  
+        			j = mark;
+        		}
+        		for (int i = 0; i < 5; j--, i++)
+        			if (j > 0) {
+        				out.println("<a href=\"http://localhost:8080/Rate/rate/?ratelect=" + (i+1)
+        						+ "&lectorid=" + rsLector.getInt(1)
+        						+ "\" title=\"" + mark + "\" class=\"mark\" " + 
+        					"style=\"opacity: 1;\"></a>");
+        			} else {
+        				out.println("<a href=\"http://localhost:8080/Rate/rate/?ratelect=" + (i+1) 
+        						+ "&lectorid=" + rsLector.getInt(1)
+        						+ "\" title=\"" + mark + "\" class=\"mark\"></a>");
+        			}
+        	%>
         </p>
 
       </section>
@@ -165,9 +157,12 @@
 </div>
 <div class="sidebar">
         <a href="http://localhost:8080/Rate/rate/" class="navig-icon home"></a>
-        <a href="http://localhost:8080/Rate/rate/?addnewlector" class="navig-icon new"></a>
+        <%
+        	if (admin)
+        		out.println("<a href=\"http://localhost:8080/Rate/rate/?addnewlector\" class=\"navig-icon new\"></a>");
+        %>
         <a href="http://localhost:8080/Rate/rate/?search" class="navig-icon search"></a>
         <a href="http://localhost:8080/Rate/rate/?logout" class="navig-icon logout"></a>
-    </div>
+</div>
 </body>
 </html>

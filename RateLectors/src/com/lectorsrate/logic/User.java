@@ -2,25 +2,25 @@ package com.lectorsrate.logic;
 
 
 public class User {
-    private String  name;
-    private String  email;
+	private int		id;
+	private boolean admin;
 
     User() {
-        name = "";
-        email = "";
+    	id = 0;
+    	admin = false;
     }
-
-    public String getName() {
-        return name;
+    
+    public boolean isAdmin() {
+    	return admin;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setAdmin(boolean admin) {
+    	this.admin = admin;
     }
-
-    public String getEmail() {
-        return email;
+    
+    public int getId() {
+        return id;
     }
-    public void setEmail(String email) {
-        this.email = email;
+    public void setId(int id) {
+        this.id = id;
     }
 }

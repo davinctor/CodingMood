@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jsp:root
-        xmlns:jsp="http://java.sun.com/JSP/Page"
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:c="http://java.sun.com/jsp/jstl/core"
-        xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-        version="2.0">
-    <jsp:directive.page contentType="text/html" />
-    <c:set var="context" value="${pageContext.servletContext.contextPath}" />
-    <html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*;" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<c:set var="context" value="${pageContext.servletContext.contextPath}" />
+<%
+    boolean admin = (boolean) request.getServletContext().getAttribute("isAdmin");
+%>
+<html>
 <head>
-<title>Add new lector</title>
+<title>Search lector</title>
 <link rel="shortcut icon" href="${context}/img/favicon.ico"/>
 <link rel="stylesheet" href="${context}/files/bootstrap.css"/>
 <link rel="stylesheet" href="${context}/files/bootstrap-responsive.css"/>
@@ -20,26 +19,17 @@
     
     <div class="signup" style="background: none; padding: 0 0 0 35%; margin: 0; width: 80%;">
         
-        <h1 class="text-center header" style="width: 100%; margin-top: 20px;">Create new lector</h1>
+        <h1 class="text-center header" style="width: 100%; margin-top: 20px;">Find lector</h1>
         
         <form id="login-form" method="post" action="http://localhost:8080/Rate/rate/" 
-              enctype="multipart/form-data"
               style="margin: 0 auto; width: 80%; padding: 20px; border: silver 1px solid;
                	border-top: none; border-bottom: none; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
-            <input type="text" name="addlector" style="display: none;"/>
+            <input type="text" name="search" style="display: none;"/>
             <div class="control-group">
                 <div class="controls">
                     <div class="input-prepend">
-                        <label class="control-label add-on">First Name</label>
-                        <input name="firstname" autofocus="autofocus" required="required" type="text"/>
-                    </div>
-                    <div class="input-prepend">
-                        <label class="control-label add-on">Last Name</label>
-                        <input name="lastname" required="required" type="text"/>
-                    </div>
-                    <div class="input-prepend">
-                        <label class="control-label add-on">Patronymic</label>
-                        <input name="patronymic" required="required" type="text"/>
+                        <label class="control-label add-on">Fullname</label>
+                        <input name="fullname" autofocus="autofocus" required="required" type="text"/>
                     </div>
                     <div class="input-prepend">
                         <label class="control-label add-on">University</label>
@@ -65,24 +55,13 @@
                         <label class="control-label add-on">Goals</label>
                         <input name="goals" type="text" />
                     </div>
-                    <div class="input-prepend">
-                        <div style="border-radius: 4px">
-                        	<div class="upload">
-                            	<input type="file" accept="image/*" name="imageFile"/>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
             <div class="control-group">
                 <div class="controls text-center">
                     <input type="submit" class="btn btn-large btn-primary transitional"
-                           style="width: 100%;" value="Create"/>
-                    
-                    <!--<hr class="soften inverse"/>
-                    <hr class="soften"/>-->
-                    
+                           style="width: 100%;" value="Find"/>
                 </div>
             </div>
 
@@ -90,11 +69,12 @@
     </div>
     <div class="sidebar">
         <a href="http://localhost:8080/Rate/rate/" class="navig-icon home"></a>
-        <a href="http://localhost:8080/Rate/rate/?addnewlector" class="navig-icon new"></a>
+        <%
+        	if (admin)
+        		out.println("<a href=\"http://localhost:8080/Rate/rate/?addnewlector\" class=\"navig-icon new\"></a>");
+        %>
         <a href="http://localhost:8080/Rate/rate/?search" class="navig-icon search"></a>
         <a href="http://localhost:8080/Rate/rate/?logout" class="navig-icon logout"></a>
     </div>
 </body>
 </html>
-
-</jsp:root>

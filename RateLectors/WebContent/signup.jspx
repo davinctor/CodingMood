@@ -34,7 +34,8 @@
         
         <h1><a class="brandMy" href="http://localhost:8080/Rate/rate/">rateLectors.com</a></h1>
         
-        <form id="signup-form" action="http://localhost:8080/Rate/rate/" method="post">
+        <form method="post" action="http://localhost:8080/Rate/rate/" 
+              enctype="multipart/form-data">
             <input type="text" name="signup" style="display: none;"/>
             <div class="control-group">
                 <div class="control">
@@ -66,8 +67,16 @@
                         <label class="control-label add-on" for="signup-password">Password</label>
                         <input id="signup-password" name="password" tabindex="5" required="required" type="password"/>
                     </div>
+                    <div class="input-prepend">
+                        <div style="border-radius: 4px">
+                        	<div class="upload">
+                            	<input type="file" accept="image/*" name="imageFile"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>    
+            
             <div class="control-group">    
                 <div class="control text-center">
                     <input type="submit" tabindex="6" class="btn btn-block btn-large btn-primary transitional" value="Create my account"/>

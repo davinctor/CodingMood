@@ -7,9 +7,9 @@ html, body {
 /* Typography
 ----------------------------------------------------------------------------- */
 body {
-  background: -moz-linear-gradient(left, rgba(249,252,247,1) 0%, rgba(245,249,240,1) 100%);
-  color: #777;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  	background: -moz-linear-gradient(left, rgba(249,252,247,1) 0%, rgba(245,249,240,1) 100%);
+  	color: #777;
+  	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -444,9 +444,12 @@ a.linkBack {
     font-size: 1.45em;
 }
 h1.header {
+	width: 35%;
+	margin: -55px auto 40px auto;
+	background: -moz-linear-gradient(left, rgba(249,252,247,1) 0%, rgba(245,249,240,1) 100%);
     font-size: 3.5em;
     color: #080808;
-    margin: 20px 0 40px 0;
+    overflow: hidden;
 }
 
 .signup .brand {
